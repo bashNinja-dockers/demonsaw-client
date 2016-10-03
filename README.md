@@ -1,6 +1,6 @@
 # Summary
 
-I dockerized [Demonsaw]("https://demonsaw.com"). Still a proof of concept but it's functional. Literally the only reason I built this was to do it before Preston. Get a job man. 
+I have improved the [Demonsaw]("https://demonsaw.com") dockerfile found in Andrew Morris's [Github]("https://github.com/andrew-morris/demonsaw-docker"). This will be added to dockerhub in order to facilitate use.
 
 # Usage
 

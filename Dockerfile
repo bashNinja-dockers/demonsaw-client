@@ -15,7 +15,6 @@ RUN apt-get install -y \
     libX11-xcb-dev \
     libxi6 \
     libfontconfig1 \
-    libfontconfig1 
     libXrender1 \
     libglib2.0-0 \
     libgl1-mesa-dev && \

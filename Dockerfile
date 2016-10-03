@@ -1,33 +1,68 @@
-FROM debian:latest
-MAINTAINER Mike Weaver <mike@thebash.ninja>
+# Builds a docker gui image
+FROM hurricane/dockergui:xvnc
 
-RUN apt-get update
-RUN apt-get -y upgrade
-RUN mkdir /opt/demonsaw
+#########################################
+##        ENVIRONMENTAL CONFIG         ##
+#########################################
+
+# Set environment variables
 ENV HOME /home/demonsaw
-ENV QT_XKB_CONFIG_ROOT /usr/share/X11/xkb
-WORKDIR $HOME
 
-RUN apt-get install -y \
+# User/Group Id gui app will be executed as default are 99 and 100
+ENV USER_ID=99
+ENV GROUP_ID=100
+
+# Gui App Name default is "Demonsaw 3.1.0"
+ENV APP_NAME="Demonsaw 3.1.0"
+
+# Default resolution, change if you like
+ENV WIDTH=1280
+ENV HEIGHT=720
+
+# Use baseimage-docker's init system
+CMD ["/sbin/my_init"]
+
+#########################################
+##    REPOSITORIES AND DEPENDENCIES    ##
+#########################################
+RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' > /etc/apt/sources.list && \
+    echo 'deb http://archive.ubuntu.com/ubuntu trusty-updates main universe restricted' >> /etc/apt/sources.list && \
+    add-apt-repository ppa:ubuntu-toolchain-r/test && \
+    apt-get update && \
+    apt-get install -y \
     curl \
     libxcb-glx0 \
     libX11-xcb1 \
     libX11-xcb-dev \
     libxi6 \
+    libstdc++6 \
     libfontconfig1 \
     libXrender1 \
     libglib2.0-0 \
     libgl1-mesa-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    useradd --create-home --home-dir $HOME demonsaw && \
     mkdir -p /home/demonsaw/Downloads && \
+    usermod -d /home/demonsaw nobody && \
     curl -SL https://www.demonsaw.com/download/3.1.0/demonsaw_debian_64.tar.gz \
-    | tar xvz -C /opt/demonsaw
+    | tar xvz -C /home/demonsaw && \
+    chown -R nobody:users $HOME && \
+    chmod 0755 /home/demonsaw/demonsaw && \
+    chmod 0755 /home/demonsaw/demonsaw_cli
 
-RUN chown -R demonsaw:demonsaw $HOME && \
-    chmod 0755 /opt/demonsaw/demonsaw && \
-    chmod 0755 /opt/demonsaw/demonsaw_cli
+# Install packages needed for app
 
-USER demonsaw
-EXPOSE 80
-CMD ["/opt/demonsaw/demonsaw"]
+#########################################
+##          GUI APP INSTALL            ##
+#########################################
+
+# Install steps for X app
+ENV QT_XKB_CONFIG_ROOT /usr/share/X11/xkb
+
+# Copy X app start script to right location
+COPY startapp.sh /startapp.sh
+
+#########################################
+##         EXPORTS AND VOLUMES         ##
+#########################################
+
+# Place whater volumes and ports you want exposed here:

@@ -59,7 +59,7 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' 
 ENV QT_XKB_CONFIG_ROOT /usr/share/X11/xkb
 
 # Copy X app start script to right location
-COPY startapp.sh /startapp.sh
+COPY start.sh /startapp.sh
 
 #########################################
 ##         EXPORTS AND VOLUMES         ##

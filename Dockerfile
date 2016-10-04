@@ -65,4 +65,4 @@ COPY startapp.sh /startapp.sh
 ##         EXPORTS AND VOLUMES         ##
 #########################################
 
-# Place whater volumes and ports you want exposed here:
+# Place whatever volumes and ports you want exposed here:

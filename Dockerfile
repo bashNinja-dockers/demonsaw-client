@@ -41,8 +41,7 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' 
     libglib2.0-0 \
     libgl1-mesa-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /home/demonsaw/Downloads && \
-    usermod -d /home/demonsaw nobody && \
+    mkdir -p /home/demonsaw/downloads && \
     curl -SL https://www.demonsaw.com/download/3.1.0/demonsaw_debian_64.tar.gz \
     | tar xvz -C /home/demonsaw && \
     chown -R nobody:users $HOME && \

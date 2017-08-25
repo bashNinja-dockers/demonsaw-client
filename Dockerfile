@@ -12,8 +12,8 @@ ENV HOME /home/demonsaw
 ENV USER_ID=99
 ENV GROUP_ID=100
 
-# Gui App Name default is "Demonsaw 3.1.0"
-ENV APP_NAME="Demonsaw 3.1.0"
+# Gui App Name default is "Demonsaw 4.0.2"
+ENV APP_NAME="Demonsaw 4.0.2"
 
 # Default resolution, change if you like
 ENV WIDTH=1280
@@ -42,12 +42,11 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' 
     libgl1-mesa-dev && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /home/demonsaw/downloads && \
-    curl -SL https://www.demonsaw.com/download/3.1.0/demonsaw_debian_64.tar.gz \
+    curl -SL https://www.demonsaw.com/download/demonsaw_nix_64.tar.gz \
     | tar xvz -C /home/demonsaw && \
     chown -R nobody:users $HOME && \
-    chmod 0755 /home/demonsaw/demonsaw && \
-    chmod 0755 /home/demonsaw/demonsaw_cli
-
+    chmod 0755 /home/demonsaw/Demonsaw
+    
 # Install packages needed for app
 
 #########################################

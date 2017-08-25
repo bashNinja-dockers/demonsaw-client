@@ -1,2 +1,2 @@
 #!/bin/bash
-/home/demonsaw/demonsaw
+/home/demonsaw/Demonsaw

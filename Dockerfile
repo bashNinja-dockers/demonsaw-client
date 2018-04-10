@@ -12,8 +12,8 @@ ENV HOME /home/demonsaw
 ENV USER_ID=99
 ENV GROUP_ID=100
 
-# Gui App Name default is "Demonsaw 4.0.2"
-ENV APP_NAME="Demonsaw 4.0.2"
+# Gui App Name default is "Demonsaw 4.0.3"
+ENV APP_NAME="Demonsaw 4.0.3"
 
 # Default resolution, change if you like
 ENV WIDTH=1280
